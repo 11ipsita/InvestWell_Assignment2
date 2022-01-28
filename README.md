@@ -1,1 +1,1 @@
-# InvestWell_Assignment2
+# InvestWell_Assignment2 (LOTTERY SYSTEM)
