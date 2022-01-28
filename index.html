@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lottery System</title>
+        <style>
+            table{
+                text-align: center;
+                float: right;
+            }
+            th{
+                border: 2px solid #0f0f0f;
+                text-align: center;
+                padding: 8px ;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="number" id="lottery" min="1" max="100" value="1"/>
+            <button type="button" id="button">Lottery</button>
+              <!---<h1 id="lottery"></h1>
+              <button onclick="getRandomInt(1, 50)">Lottery</button>--->
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User Input</th>
+                    <th>Generetor Input</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                
+            </tbody>
+        </table>
+        </div>
+        
+        
+        
+        <script>
+            let lotteryRun = 0;
+            let win = false;
+            var lottery = document.getElementById("lottery");
+            var button = document.getElementById("button");
+            var table = document.getElementById("table");
+            
+            button.addEventListener("click", () => {
+                let result = "Loose";
+                let genratorInput = 0;
+                var userInput = document.getElementById("lottery").value;
+                lotteryRun++;
+                lotteryRun %= 11;
+                genratorInput = Math.floor(Math.random() * 100) + 1;
+                if (lotteryRun < 10) {
+                    if (win == false) {
+                        if (genratorInput == userInput) {
+                            result = "Win";
+                            win = true;
+                        }
+                    } else {
+                        while (genratorInput == userInput) {
+                            genratorInput = Math.floor(Math.random() * 100) + 1;  // Returns a random integer from 1 to 100
+                        }
+                        result = "Loose";
+                    }
+                } else {
+                    if (win == false) {
+                        genratorInput = userInput;
+                        result = "Win";
+                    } 
+                }
+                var row = table.insertRow(0);
+                var cell = row.insertCell();
+                
+                cell.innerHTML = userInput;
+                cell = row.insertCell();
+
+                cell.innerHTML = genratorInput;
+                cell = row.insertCell();
+
+                if (genratorInput == userInput) {}
+                cell.innerHTML = result;
+                
+                if (lotteryRun == 10) {
+                    var row = table.insertRow(0);
+                    var cell = row.insertCell();
+                    cell.innerHTML = "STOP";
+                }
+            });
+        </script>
+    </body>
+</html>
